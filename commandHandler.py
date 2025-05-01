@@ -77,7 +77,7 @@ def handle_rmdir(command, hostname):
     else:
         if not arguments:
             return f"rmdir: missing operand\n\n\r{config.prompt(os.getcwd())}", False
-        if not os.path.isfile(arguments):
+        if not os.path.isdir(arguments):
             return f"rmdir: {arguments}: No such file or directory\n\n\r{config.prompt(os.getcwd())}", False
     
     for dir_name in dir_names:
@@ -147,4 +147,4 @@ def processCommands(command, hostname):
         if system == "Windows":
             return f"'{base_command}' is not recognized as an internal or external command, operable program or batch file.\n\n\r{hostname}", False
         else:
-            return f"bash: {base_command}: command not found\n\r{hostname}"
+            return f"bash: {base_command}: command not found\n\n\r{hostname}", False
